@@ -1,0 +1,156 @@
+%----------------------- Преамбула -----------------------
+\documentclass[ut8x, 14pt, oneside, a4paper]{extarticle}
+
+\usepackage{extsizes} % Для добавления в параметры класса документа 14pt
+
+% Для работы с несколькими языками и шрифтом Times New Roman по-умолчанию
+\usepackage{cmap} % Улучшенный поиск русских слов в полученном pdf-файле
+\usepackage{graphicx}
+\usepackage[english,russian]{babel}
+\usepackage[utf8]{inputenc} % Кодировка utf8
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{amsmath}
+
+% ГОСТовские настройки для полей и абзацев
+\usepackage{geometry}
+\geometry{left=30mm}
+\geometry{right=10mm}
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\usepackage{misccorr}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\setlength{\parindent}{1.25cm}
+\renewcommand{\baselinestretch}{1.25}
+\setlist{nolistsep} % Отсутствие отступов между элементами \enumerate и \itemize
+
+
+% Переопределение стандартных \section, \subsection, \subsubsection по ГОСТу;
+% Переопределение их отступов до и после для 1.5 интервала во всем документе
+\usepackage{titlesec}
+
+\titleformat{\subsection}[hang]
+{\bfseries\normalsize}{\thesubsection}{1em}{}
+\titlespacing\subsection{\parindent}{\parskip}{\parskip}
+
+\titleformat{\subsubsection}[hang]
+{\bfseries\normalsize}{\thesubsubsection}{1em}{}
+\titlespacing\subsubsection{\parindent}{\parskip}{\parskip}
+
+% Работа с изображениями и таблицами; переопределение названий по ГОСТу
+\usepackage{float}
+\usepackage{setspace}
+\onehalfspacing % Полуторный интервал
+\frenchspacing
+\usepackage{indentfirst} % Красная строка
+\titleformat{\chapter}{\LARGE\bfseries}{\thechapter}{20pt}{\LARGE\bfseries}
+\titleformat{\section}{\centering\Large\bfseries}{\thesection\quad}{20pt}{\Large\bfseries}
+\usepackage{listings}
+
+% Выравнивание "где" по ГОСТу для формул
+\usepackage{eqexpl}
+
+
+% Цвета для гиперссылок и листингов
+\usepackage{color}
+
+% Для нормальной нумерации картинок, разделённой по section'ам
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
+
+% Гиперссылки \toc с кликабельностью
+\usepackage{hyperref}
+
+\hypersetup{
+	linktoc=all,
+	linkcolor=black,
+	colorlinks=true,
+}
+
+% Листинги
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+\usepackage{color}
+\hypersetup{citecolor=black}
+\hypersetup{ hidelinks = true}
+
+\usepackage{ulem} % Нормальное нижнее подчеркивание
+\usepackage{hhline} % Двойная горизонтальная линия в таблицах
+\usepackage[figure,table]{totalcount} % Подсчет изображений, таблиц
+\usepackage{rotating} % Поворот изображения вместе с названием
+\usepackage{lastpage} % Для подсчета числа страниц
+
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+
+\usepackage{color}
+\usepackage[cache=false, newfloat]{minted}
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Листинг}
+
+
+\newcommand{\anonsection}[1]{%
+	\section*{\centering#1}%
+	\addcontentsline{toc}{section}{#1}%
+}
+
+
+% \makeatletter
+% \renewenvironment{thebibliography}[1]
+% {\section*{\bibname}% <-- this line was changed from \chapter* to \section*
+%	\@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+%	\list{\@biblabel{\@arabic\c@enumiv}}%
+%	{\settowidth\labelwidth{\@biblabel{#1}}%
+%		\leftmargin\labelwidth
+%		\advance\leftmargin\labelsep
+%		\@openbib@code
+%		\usecounter{enumiv}%
+%		\let\p@enumiv\@empty
+%		\renewcommand\theenumiv{\@arabic\c@enumiv}}%
+%	\sloppy
+%	\clubpenalty4000
+%	\@clubpenalty \clubpenalty
+%	\widowpenalty4000%
+%	\sfcode`\.\@m}
+%{\def\@noitemerr
+%	{\@latex@warning{Empty `thebibliography' environment}}%
+%	\endlist}
+%\makeatother
+
+\usepackage[square,numbers,sort&compress]{natbib}
+\renewcommand{\bibnumfmt}[1]{#1.\hfill}
+
+\makeatletter
+\renewenvironment{thebibliography}[1]
+{\section*{\bibname}% <-- this line was changed from \chapter* to \section*
+	\@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+	\list{\@biblabel{\@arabic\c@enumiv}}%
+	{\settowidth\labelwidth{\@biblabel{#1}}%
+		\leftmargin\labelwidth
+		\advance\leftmargin\labelsep
+		\@openbib@code
+		\usecounter{enumiv}%
+		\let\p@enumiv\@empty
+		\renewcommand\theenumiv{\@arabic\c@enumiv}}%
+	\sloppy
+	\clubpenalty4000
+	\@clubpenalty \clubpenalty
+	\widowpenalty4000%
+	\sfcode`\.\@m}
+{\def\@noitemerr
+	{\@latex@warning{Empty `thebibliography' environment}}%
+	\endlist}
+\makeatother
+
+\renewcommand\labelitemi{---}
+\usepackage[figurename=Рисунок, labelsep=endash, singlelinecheck=false]{caption}
+\usepackage{placeins}
+\usepackage{ragged2e}
+\justifying
+\captionsetup[table]{justification=raggedleft,singlelinecheck=off}

@@ -1,0 +1,68 @@
+\section{Технологический раздел}
+
+\subsection{Выбор языка и среды программирования}
+В качестве языка программирования был выбран язык C. 
+На этом языке реализованы все модули ядра и драйверы операционной системы Linux.
+
+В качестве среды разработки была выбрана Visual Studio Code. 
+
+\subsection{Реализация изменения яркости}
+На листинге 5 представлена реализация изменения яркости.
+
+Функция \textit{brightness\_update} записывает новое значение яркости в файл, а \textit{backlight\_change} рассчитывает в соответствии с наступившем событием это значение.
+
+\FloatBarrier
+\begin{lstinputlisting}[language=C, caption=Реализация изменения яркости, linerange = {37-55},
+	basicstyle=\footnotesize\ttfamily, frame=single, breaklines=true]{../src/brightness.c}
+\end{lstinputlisting}
+\FloatBarrier
+
+\subsection{Реализация обработчика прерываний от мыши}
+В приложении А представлена реализация обработчика прерываний от мыши.
+
+Для определения нажатой клавиши используется поле \textit{data} из структуры \textit{mouse\_t}. 
+Второй байт поля отвечает за тип нажатой клавиши, поля с третьего по шестой включительно используются для вычисления новых координат.
+
+\subsection{Реализация драйвера}
+В листинге 6 представлена реализация функции \textit{probe}.
+
+\FloatBarrier
+\begin{lstinputlisting}[language=C, caption=Реализация функции probe, linerange = {126-206},
+	basicstyle=\footnotesize\ttfamily, frame=single, breaklines=true]{../src/controller.c}
+\end{lstinputlisting}
+\FloatBarrier
+
+\clearpage
+
+На листинге 7 представлена реализация функции \textit{disconnect}.
+\FloatBarrier
+\begin{lstinputlisting}[language=C, caption=Реализация функции disconnect, linerange = {208-221},
+	basicstyle=\footnotesize\ttfamily, frame=single, breaklines=true]{../src/controller.c}
+\end{lstinputlisting}
+\FloatBarrier
+
+\clearpage
+
+На листинге 8 представлена реализация функции \textit{init} для драйвера.
+\FloatBarrier
+\begin{lstinputlisting}[language=C, caption=Реализация функции init, linerange = {260-295},
+	basicstyle=\footnotesize\ttfamily, frame=single, breaklines=true]{../src/controller.c}
+\end{lstinputlisting}
+\FloatBarrier
+
+\clearpage
+
+На листинге 9 представлена реализация функции \textit{exit} для драйвера.
+\FloatBarrier
+\begin{lstinputlisting}[language=C, caption=Реализация функции exit, linerange = {297-304},
+	basicstyle=\footnotesize\ttfamily, frame=single, breaklines=true]{../src/controller.c}
+\end{lstinputlisting}
+\FloatBarrier
+
+\subsection{Makefile}
+На листинге 10 представлена реализация Makefile.
+\FloatBarrier
+\begin{lstinputlisting}[language=C, caption=Makefile, linerange = {},
+	basicstyle=\footnotesize\ttfamily, frame=single, breaklines=true]{../src/Makefile}
+\end{lstinputlisting}
+\FloatBarrier
